@@ -1,0 +1,298 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+  color: #e0e0e0;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+#level {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0 20px 0;
+  color: #4cafef;
+  text-shadow: 0 0 5px rgba(76,175,239,0.6);
+}
+
+#photo {
+  max-width: 400px;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.85);
+  margin: 20px auto;
+  display: none;
+  transition: filter 0.3s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+#photo.ready {
+  display: block;
+  opacity: 1;
+}
+
+#sliders {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* дві колонки */
+  gap: 15px 30px; /* відстань між рядками і колонками */
+  margin: 20px auto;
+  padding: 15px;
+  max-width: 600px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.7);
+  text-align: left;
+}
+
+#sliders {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* тепер три колонки */
+  gap: 15px 30px;
+  margin: 20px auto;
+  padding: 15px;
+  max-width: 800px; /* трохи ширше */
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.7);
+  text-align: left;
+}
+
+
+
+#sliders input[type="range"] {
+  width: 100%;
+  margin: 5px 0 20px 0;
+  background: transparent;
+}
+
+
+/* Кастомні слайдери */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: linear-gradient(90deg, #4caf50, #9c27b0);
+  border-radius: 3px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #4caf50;
+  cursor: pointer;
+  margin-top: -6px;
+  transition: transform 0.2s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  background: linear-gradient(90deg, #4caf50, #9c27b0);
+  border-radius: 3px;
+}
+input[type="range"]::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #4caf50;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #1e1e1e;
+  color: #fff;
+  margin: 10px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+button {
+  padding: 10px 25px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(135deg, #4caf50, #43a047);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #66bb6a, #4caf50);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+#result {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #ffb74d;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#result.show {
+  opacity: 1;
+}
+/* Лічильник балів */
+#scoreboard {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    user-select: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Анімація при додаванні балів */
+#scoreboard.flash {
+    transform: scale(1.2);
+    background: rgba(255, 215, 0, 0.9); /* золотий відтінок */
+    color: #000;
+}
+/* Кнопка переможців */
+#winnersBtn {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    background: #ffcc00;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background 0.2s;
+    z-index: 1001;
+}
+#winnersBtn:hover {
+    background: #ffaa00;
+}
+
+/* Модальне вікно */
+.modal {
+    display: none; /* приховано спочатку */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+
+/* Вміст модалки */
+.modal-content {
+    background: #1e1e1e;   /* темний фон */
+    color: #e0e0e0;        /* світлий текст */
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Кнопка закриття */
+.close {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #bbb;
+}
+.close:hover {
+    color: #fff;
+}
+
+/* Список переможців */
+#winnersList {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: left;
+}
+
+/* Рядки у списку */
+#winnersList li {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Чергування фону (темна зебра) */
+#winnersList li:nth-child(odd) {
+    background: #2a2a2a;
+}
+#winnersList li:nth-child(even) {
+    background: #333333;
+}
+
+/* Іконка перед іменем */
+#winnersList li::before {
+    content: "⭐";
+    color: #ffcc00;
+    font-size: 18px;
+}
+
+
+/* Анімація появи */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Топ-1 переможець */
+#winnersList li:first-child {
+    background: linear-gradient(135deg, #ffcc00, #ffaa00);
+    color: #000;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+/* Для першого місця замінюємо іконку */
+#winnersList li:first-child::before {
+    content: "🏆";
+    font-size: 20px;
+    color: #000;
+}
+
+

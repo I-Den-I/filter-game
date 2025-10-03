@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Збери фото</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="level" style="font-weight: bold; margin: 10px 0;"></div>
+
+<!-- Лічильник поінтів -->
+<div id="scoreboard">
+  <span>⭐ Поінти: <span id="score">0</span></span>
+</div>
+
+<div id="header">
+  <div id="score">Очки: 0</div>
+  <input type="text" id="playerName" placeholder="Введіть ім’я">
+  <button id="winnersBtn">🏆 Переможці</button>
+</div>
+
+<!-- Модальне вікно для переможців -->
+<div id="winnersModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>🏆 Список переможців</h2>
+    <ul id="winnersList"></ul>
+  </div>
+</div>
+
+
+
+    <img id="photo" src="" alt="random photo" />
+
+    <div id="sliders"></div>
+
+    <div style="margin: 15px 0;">
+        <label for="difficulty">Складність:</label>
+<select id="difficulty">
+  <option value="easy">Ізі</option>
+  <option value="medium">Норм</option>
+  <option value="hard">Хард</option>
+</select>
+
+    </div>
+
+    <button onclick="checkFilters()">Перевірити</button>
+    <p id="result"></p>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
