@@ -7,7 +7,7 @@ app.secret_key = "supersecretkey"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WINNERS_FILE = os.path.join(BASE_DIR, "winners.txt")
 photos = [
-    {"id": 1, "path": "/static/photos/cat.png", "original": "/static/photos/cat.png"},
+    {"id": 1, "path": "/static/photos/ball.png", "original": "/static/photos/ball.png"},
     {"id": 2, "path": "/static/photos/dog.png", "original": "/static/photos/dog.png"},
     {"id": 3, "path": "/static/photos/car.png", "original": "/static/photos/car.png"},
     {"id": 4, "path": "/static/photos/tnt.png", "original": "/static/photos/tnt.png"},
@@ -20,8 +20,7 @@ photos = [
     {"id": 11, "path": "/static/photos/dog2.png", "original": "/static/photos/dog2.png"},
     {"id": 12, "path": "/static/photos/granny.png", "original": "/static/photos/granny.png"},
     {"id": 13, "path": "/static/photos/spike.png", "original": "/static/photos/spike.png"},
-    {"id": 14, "path": "/static/photos/watermelon.png", "original": "/static/photos/watermelon.png"},
-    {"id": 15, "path": "/static/photos/man.png", "original": "/static/photos/man.png"},
+    {"id": 14, "path": "/static/photos/watermelon.png", "original": "/static/photos/watermelon.png"}
 ]
 
 # "руйнівні" пороги для різних фільтрів
