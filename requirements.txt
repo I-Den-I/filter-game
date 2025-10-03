@@ -1,3 +1,1 @@
-flask
-random
-os
+Flask==2.3.3
