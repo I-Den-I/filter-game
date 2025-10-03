@@ -233,23 +233,19 @@ function resetSlidersToInitial() {
   });
   updateFilters();
 }
-// ==== Логіка модалки переможців ====
+
 const winnersBtn = document.getElementById("winnersBtn");
 const winnersModal = document.getElementById("winnersModal");
-const closeBtn = document.querySelector(".modal .close");
+const closeBtn = winnersModal.querySelector(".close");
 const winnersList = document.getElementById("winnersList");
 
-// Відкрити модалку + завантажити переможців
 winnersBtn.addEventListener("click", async () => {
   winnersModal.style.display = "block";
-
-  // Отримати список переможців з бекенду
   try {
     const res = await fetch("/winners");
     const data = await res.json();
     winnersList.innerHTML = "";
-
-    if (data.winners.length === 0) {
+    if (!data.winners || data.winners.length === 0) {
       winnersList.innerHTML = "<li>Ще немає переможців 🕹️</li>";
     } else {
       data.winners.forEach(w => {
@@ -263,6 +259,15 @@ winnersBtn.addEventListener("click", async () => {
   }
 });
 
+closeBtn.addEventListener("click", () => {
+  winnersModal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === winnersModal) winnersModal.style.display = "none";
+});
+
+
 // Закрити (хрестик)
 closeBtn.addEventListener("click", () => {
   winnersModal.style.display = "none";
@@ -275,23 +280,52 @@ window.addEventListener("click", (event) => {
   }
 });
 
-document.getElementById("winnersBtn").addEventListener("click", async () => {
-  const res = await fetch("/winners");
-  const winners = await res.json();
 
-  // Сортуємо за очками (спадаюче)
-  winners.sort((a, b) => b.score - a.score);
+const hintBtn = document.getElementById("hintBtn");
+const hintModal = document.getElementById("hintModal");
+const originalImg = document.getElementById("originalPhoto");
+const hintClose = document.getElementById("hintClose");
 
-  const list = document.getElementById("winnersList");
-  list.innerHTML = "";
-  winners.forEach((w, i) => {
-    const li = document.createElement("li");
-    li.textContent = `${w.name} — ${w.score} очків`;
-    list.appendChild(li);
-  });
-
-  document.getElementById("winnersModal").style.display = "block";
+hintBtn.addEventListener("click", () => {
+  if (!currentPhoto) return;
+  originalImg.src = currentPhoto.original || currentPhoto.path; // правильний шлях
+  hintModal.style.display = "block";
 });
+
+hintClose.addEventListener("click", () => {
+  hintModal.style.display = "none";
+});
+
+// Закриття при кліку поза контентом
+window.addEventListener("click", (e) => {
+  if (e.target === hintModal) hintModal.style.display = "none";
+});
+
+
+
+// Закриття при кліку поза контентом
+window.addEventListener("click", (e) => {
+  if (e.target === hintModal) hintModal.style.display = "none";
+});
+
+const skipBtn = document.getElementById("skipBtn");
+
+skipBtn.addEventListener("click", () => {
+  const levelText = document.getElementById("level").textContent;
+  const match = levelText.match(/Рівень (\d+) з (\d+)/);
+  if (match) {
+    const level = parseInt(match[1]);
+    const total = parseInt(match[2]);
+    if (level === total) {
+      alert("Це був останній рівень!");
+    } else {
+      loadPhoto(); // завантажуємо наступне фото
+      resetSlidersToInitial();
+      document.getElementById("result").classList.remove("show");
+    }
+  }
+});
+
 
 // Ініціалізація
 window.onload = () => {

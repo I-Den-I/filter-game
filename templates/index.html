@@ -8,27 +8,35 @@
 <body>
     <div id="level" style="font-weight: bold; margin: 10px 0;"></div>
 
-<!-- Лічильник поінтів -->
-<div id="scoreboard">
-  <span>⭐ Поінти: <span id="score">0</span></span>
-</div>
+    <!-- Лічильник поінтів -->
+    <div id="scoreboard">
+      <span>⭐ Поінти: <span id="score">0</span></span>
+    </div>
 
-<div id="header">
-  <div id="score">Очки: 0</div>
-  <input type="text" id="playerName" placeholder="Введіть ім’я">
-  <button id="winnersBtn">🏆 Переможці</button>
-</div>
+    <div id="header">
+      <input type="text" id="playerName" placeholder="Введіть ім’я">
+      <button id="winnersBtn">🏆 Переможці</button>
+      <button id="hintBtn">💡 Підказка</button>
+      <button id="skipBtn">⏭️ Пропустити</button>
+    </div>
 
-<!-- Модальне вікно для переможців -->
-<div id="winnersModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>🏆 Список переможців</h2>
-    <ul id="winnersList"></ul>
-  </div>
-</div>
+    <!-- Модальне вікно для переможців -->
+    <div id="winnersModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>🏆 Список переможців</h2>
+        <ul id="winnersList"></ul>
+      </div>
+    </div>
 
-
+    <!-- Модальне вікно для підказки -->
+    <div id="hintModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="hintClose">&times;</span>
+        <h2>Оригінальне фото</h2>
+        <img id="originalPhoto" src="" alt="Оригінал" style="max-width:100%; border-radius: 12px;"/>
+      </div>
+    </div>
 
     <img id="photo" src="" alt="random photo" />
 
@@ -36,12 +44,11 @@
 
     <div style="margin: 15px 0;">
         <label for="difficulty">Складність:</label>
-<select id="difficulty">
-  <option value="easy">Ізі</option>
-  <option value="medium">Норм</option>
-  <option value="hard">Хард</option>
-</select>
-
+        <select id="difficulty">
+          <option value="easy">Ізі</option>
+          <option value="medium">Норм</option>
+          <option value="hard">Хард</option>
+        </select>
     </div>
 
     <button onclick="checkFilters()">Перевірити</button>

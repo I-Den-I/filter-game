@@ -7,22 +7,23 @@ app.secret_key = "supersecretkey"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WINNERS_FILE = os.path.join(BASE_DIR, "winners.txt")
 photos = [
-    {"id": 1, "path": "/static/photos/cat.png"},
-    {"id": 2, "path": "/static/photos/dog.png"},
-    {"id": 3, "path": "/static/photos/car.png"},
-    {"id": 4, "path": "/static/photos/tnt.png"},
-    {"id": 5, "path": "/static/photos/mine.png"},
-    {"id": 6, "path": "/static/photos/roblox.png"},
-    {"id": 7, "path": "/static/photos/grow.png"},
-    {"id": 8, "path": "/static/photos/abobus.png"},
-    {"id": 9, "path": "/static/photos/chess.png"},
-    {"id": 10, "path": "/static/photos/venom.png"},
-    {"id": 11, "path": "/static/photos/dog2.png"},
-    {"id": 12, "path": "/static/photos/granny.png"},
-    {"id": 13, "path": "/static/photos/spike.png"},
-    {"id": 14, "path": "/static/photos/watermelon.png"},
-    {"id": 15, "path": "/static/photos/man.png"},
+    {"id": 1, "path": "/static/photos/cat.png", "original": "/static/photos/cat.png"},
+    {"id": 2, "path": "/static/photos/dog.png", "original": "/static/photos/dog.png"},
+    {"id": 3, "path": "/static/photos/car.png", "original": "/static/photos/car.png"},
+    {"id": 4, "path": "/static/photos/tnt.png", "original": "/static/photos/tnt.png"},
+    {"id": 5, "path": "/static/photos/mine.png", "original": "/static/photos/mine.png"},
+    {"id": 6, "path": "/static/photos/roblox.png", "original": "/static/photos/roblox.png"},
+    {"id": 7, "path": "/static/photos/grow.png", "original": "/static/photos/grow.png"},
+    {"id": 8, "path": "/static/photos/abobus.png", "original": "/static/photos/abobus.png"},
+    {"id": 9, "path": "/static/photos/chess.png", "original": "/static/photos/chess.png"},
+    {"id": 10, "path": "/static/photos/venom.png", "original": "/static/photos/venom.png"},
+    {"id": 11, "path": "/static/photos/dog2.png", "original": "/static/photos/dog2.png"},
+    {"id": 12, "path": "/static/photos/granny.png", "original": "/static/photos/granny.png"},
+    {"id": 13, "path": "/static/photos/spike.png", "original": "/static/photos/spike.png"},
+    {"id": 14, "path": "/static/photos/watermelon.png", "original": "/static/photos/watermelon.png"},
+    {"id": 15, "path": "/static/photos/man.png", "original": "/static/photos/man.png"},
 ]
+
 # "руйнівні" пороги для різних фільтрів
 BASE_FILTERS = {
     "blur": 0,
@@ -108,16 +109,21 @@ def next_photo():
         applied_filters[f] = random.randint(mn, mx)
         ranges[f] = [mn, mx]
 
-    # ✅ тепер зберігаємо правильну мішень, а не нулі
+    # зберігаємо правильну мішень фільтрів
     session["original_filters"] = BASE_FILTERS.copy()
 
+    # додаємо шлях до оригінального фото
+    photo_with_original = photo.copy()  # робимо копію словника
+    photo_with_original["original"] = photo["path"]
+
     return jsonify({
-        "photo": photo,
-        "filters": applied_filters,  # це отримує фронтенд
+        "photo": photo_with_original,
+        "filters": applied_filters,
         "ranges": ranges,
         "level": idx + 1,
         "total": len(photo_order)
     })
+
 
 
 @app.route("/check_result", methods=["POST"])
