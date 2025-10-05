@@ -7,9 +7,9 @@ app.secret_key = "supersecretkey"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 WINNERS_FILE = os.path.join(BASE_DIR, "winners.txt")
 photos = [
-    {"id": 1, "path": "/static/photos/ball.png", "original": "/static/photos/ball.png"},
-    {"id": 2, "path": "/static/photos/dog.png", "original": "/static/photos/dog.png"},
-    {"id": 3, "path": "/static/photos/car.png", "original": "/static/photos/car.png"},
+    {"id": 1, "path": "/static/photos/nazar1.png", "original": "/static/photos/nazar1.png"},
+    {"id": 2, "path": "/static/photos/nazar2.png", "original": "/static/photos/nazar2.png"},
+    {"id": 3, "path": "/static/photos/nazar3.png", "original": "/static/photos/nazar3.png"},
     {"id": 4, "path": "/static/photos/tnt.png", "original": "/static/photos/tnt.png"},
     {"id": 5, "path": "/static/photos/mine.png", "original": "/static/photos/mine.png"},
     {"id": 6, "path": "/static/photos/roblox.png", "original": "/static/photos/roblox.png"},
